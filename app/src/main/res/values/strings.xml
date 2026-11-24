@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FixIT</string>
+    <string name="tagline">Scan it. Report it. Fix it.</string>
+
+    <!-- Actions -->
+    <string name="action_login">Log in</string>
+    <string name="action_go_register">Create an account</string>
+    <string name="action_register">Register</string>
+    <string name="action_logout">Log out</string>
+    <string name="action_ok">OK</string>
+    <string name="action_yes">Yes</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_save">Save</string>
+    <string name="action_send">Send comment</string>
+    <string name="action_rate">Send rating</string>
+    <string name="action_new_ticket">New ticket</string>
+    <string name="action_submit_ticket">Submit ticket</string>
+    <string name="action_scan_qr">Scan QR</string>
+    <string name="action_devices">Devices</string>
+    <string name="action_allow_camera">Allow camera</string>
+    <string name="action_open_settings">Open app settings</string>
+    <string name="action_flash">Flashlight</string>
+    <string name="action_manual_entry">Enter code</string>
+    <string name="action_save_image">Save image</string>
+    <string name="action_share">Share</string>
+    <string name="action_take">Take this ticket</string>
+    <string name="action_start">Start working</string>
+    <string name="action_ask_user">Need info from user</string>
+    <string name="action_resume">Resume work</string>
+    <string name="action_resolve">Mark as resolved</string>
+    <string name="action_close">Confirm it is fixed (Close)</string>
+    <string name="action_reopen">Still broken (Reopen)</string>
+    <string name="action_cancel_ticket">Cancel ticket</string>
+
+    <!-- Navigation and titles -->
+    <string name="nav_home">Home</string>
+    <string name="nav_my_tickets">My tickets</string>
+    <string name="nav_tickets">Tickets</string>
+    <string name="nav_scan">Scan</string>
+    <string name="nav_stats">Stats</string>
+    <string name="nav_profile">Profile</string>
+    <string name="title_register">Create account</string>
+    <string name="title_new_ticket">New ticket</string>
+    <string name="title_ticket">Ticket</string>
+    <string name="title_scan">Scan a device QR</string>
+    <string name="title_devices">Devices</string>
+    <string name="title_add_device">Add device</string>
+    <string name="title_edit_device">Edit device</string>
+    <string name="title_device_qr">Device QR</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_back">Back</string>
+    <string name="cd_priority_filter">Filter by priority</string>
+    <string name="cd_sort">Sort order</string>
+    <string name="cd_qr_image">QR code of the device</string>
+
+    <!-- Login / register -->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm password</string>
+    <string name="hint_name">Full name</string>
+    <string name="remember_me">Remember me</string>
+    <string name="demo_accounts">Demo accounts\n\nTechnician: tech1@fixit.local / Tech1234\nTechnician: tech2@fixit.local / Tech5678\nUser: sara@fixit.local / User1234\nUser: ali@fixit.local / User1234\nUser: mona@fixit.local / User1234</string>
+    <string name="role_user">User</string>
+    <string name="role_tech">Technician</string>
+    <string name="confirm_logout">Log out of FixIT?</string>
+
+    <!-- Home -->
+    <string name="home_greeting">Hello, %1$s</string>
+    <string name="home_subtitle_user">Something broken? Scan the device or report it.</string>
+    <string name="home_subtitle_tech">Here is what needs your attention.</string>
+    <string name="home_overdue">Overdue</string>
+    <string name="home_due_soon">Due soon</string>
+    <string name="home_unassigned">Unassigned</string>
+    <string name="home_active">Active</string>
+    <string name="home_urgent_title">Most urgent</string>
+    <string name="empty_urgent_title">Nothing urgent</string>
+    <string name="empty_urgent_text">No active tickets right now.</string>
+
+    <!-- Ticket list -->
+    <string name="hint_search_tickets">Search tickets</string>
+    <string name="filter_all">All</string>
+    <string name="empty_tickets_title">No tickets here</string>
+    <string name="empty_tickets_text">Tickets that match your filters will appear here.</string>
+    <string name="ticket_row_meta">#%1$d · %2$s · %3$s</string>
+    <string name="no_device_short">No device</string>
+    <string-array name="priority_filter_options">
+        <item>All priorities</item>
+        <item>Critical</item>
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+    </string-array>
+    <string-array name="sort_options">
+        <item>Newest first</item>
+        <item>Most urgent first</item>
+    </string-array>
+
+    <!-- Statuses, priorities, device types -->
+    <string name="status_open">Open</string>
+    <string name="status_assigned">Assigned</string>
+    <string name="status_in_progress">In progress</string>
+    <string name="status_waiting">Waiting for user</string>
+    <string name="status_resolved">Resolved</string>
+    <string name="status_closed">Closed</string>
+    <string name="status_cancelled">Cancelled</string>
+    <string name="priority_critical">Critical</string>
+    <string name="priority_high">High</string>
+    <string name="priority_medium">Medium</string>
+    <string name="priority_low">Low</string>
+    <string name="type_pc">PC</string>
+    <string name="type_projector">Projector</string>
+    <string name="type_printer">Printer</string>
+    <string name="type_router">Router</string>
+    <string name="type_other">Other</string>
+
+    <!-- SLA -->
+    <string name="sla_on_track">%1$s left</string>
+    <string name="sla_due_soon">Due soon · %1$s left</string>
+    <string name="sla_overdue">Overdue by %1$s</string>
+    <string name="sla_paused">Paused (waiting for user)</string>
+
+    <!-- New ticket -->
+    <string name="label_device">Device</string>
+    <string name="label_category">Category</string>
+    <string name="label_priority">Priority</string>
+    <string name="no_device_selected">No device selected (optional)</string>
+    <string name="device_selected_fmt">%1$s · %2$s %3$s · %4$s</string>
+    <string name="category_suggested_fmt">Suggested category: %1$s</string>
+    <string name="hint_ticket_title">Short title</string>
+    <string name="hint_ticket_description">What is wrong?</string>
+    <string name="msg_ticket_created">Ticket created</string>
+
+    <!-- Ticket details -->
+    <string name="section_timeline">Progress</string>
+    <string name="section_actions">Actions</string>
+    <string name="section_rating">Rate the service</string>
+    <string name="section_comments">Comments</string>
+    <string name="section_history">History</string>
+    <string name="comments_none">No comments yet.</string>
+    <string name="hint_comment">Write a comment</string>
+    <string name="comment_author_tech">%1$s · Technician</string>
+    <string name="detail_category">Category: %1$s</string>
+    <string name="detail_device">Device: %1$s · %2$s (%3$s)</string>
+    <string name="detail_no_device">Device: none</string>
+    <string name="detail_owner">Reported by: %1$s</string>
+    <string name="detail_tech">Technician: %1$s</string>
+    <string name="detail_unassigned">not assigned yet</string>
+    <string name="detail_created">Created: %1$s</string>
+    <string name="detail_due">Deadline: %1$s</string>
+    <string name="detail_resolution">Resolution: %1$s</string>
+    <string name="rating_given">Rated %1$d/5</string>
+    <string name="history_created">Ticket created (%1$s)</string>
+    <string name="history_change">%1$s → %2$s</string>
+    <string name="history_meta">%1$s · %2$s</string>
+    <string name="history_user_replied">User replied</string>
+    <string name="dlg_ask_title">What do you need from the user?</string>
+    <string name="dlg_reopen_title">What is still broken?</string>
+    <string name="dlg_resolve_title">Resolution note</string>
+    <string name="dlg_note_hint">Note (optional)</string>
+    <string name="dlg_resolution_hint">What was done to fix it?</string>
+    <string name="confirm_close">Confirm the problem is fixed and close this ticket? This cannot be undone.</string>
+    <string name="confirm_cancel_ticket">Cancel this ticket? This cannot be undone.</string>
+    <string name="msg_status_updated">Ticket updated</string>
+    <string name="msg_rating_saved">Thanks for your rating</string>
+
+    <!-- Scan -->
+    <string name="scan_instruction">Point the camera at the QR sticker on the device</string>
+    <string name="perm_rationale">FixIT needs the camera only to read the QR sticker on a device. You can also type the device code.</string>
+    <string name="perm_denied_forever">The camera permission is blocked. Open the app settings to allow it, or type the device code instead.</string>
+    <string name="manual_title">Device code</string>
+    <string name="manual_hint">Code, for example PC-B2-014</string>
+
+    <!-- Devices -->
+    <string name="hint_search_devices">Search devices</string>
+    <string name="empty_devices_title">No devices found</string>
+    <string name="empty_devices_text">Add a device to print its QR sticker.</string>
+    <string name="device_info_fmt">%1$s · %2$s</string>
+    <string name="hint_device_code">Code (for example PC-B2-014)</string>
+    <string name="device_code_warning">Changing the code makes already printed stickers invalid.</string>
+    <string name="label_device_type">Type</string>
+    <string name="hint_device_model">Model</string>
+    <string name="hint_device_location">Room / location</string>
+    <string name="hint_device_note">Note (optional)</string>
+    <string name="msg_device_saved">Device saved</string>
+    <string name="msg_qr_saved">QR image saved</string>
+    <string name="device_history_fmt">Ticket history (%1$d)</string>
+    <string name="device_history_empty">No ticket has been reported for this device yet.</string>
+
+    <!-- Stats -->
+    <string name="stat_within_sla">Resolved within deadline</string>
+    <string name="stat_percent_fmt">%1$d%%</string>
+    <string name="stat_percent_detail">%1$d of %2$d resolved tickets were on time</string>
+    <string name="stat_avg_time">Average resolution time</string>
+    <string name="stat_none">n/a</string>
+
+    <!-- Messages and errors -->
+    <string name="msg_account_created">Account created</string>
+    <string name="err_generic">Something went wrong. Please try again.</string>
+    <string name="err_required">This field is required</string>
+    <string name="err_email_invalid">Enter a valid email address</string>
+    <string name="err_name_short">Enter your name (2 characters minimum)</string>
+    <string name="err_password_short">Password must have at least 6 characters</string>
+    <string name="err_password_mismatch">Passwords do not match</string>
+    <string name="err_bad_credentials">Wrong email or password</string>
+    <string name="err_email_taken">An account with this email already exists</string>
+    <string name="err_title_short">The title needs at least 5 characters</string>
+    <string name="err_description_short">Describe the problem (10 characters minimum)</string>
+    <string name="err_qr_invalid">This is not a FixIT device QR code</string>
+    <string name="err_device_unknown">No device with this code exists</string>
+    <string name="err_code_invalid">Use 3 to 30 capital letters, digits or dashes</string>
+    <string name="err_code_taken">A device with this code already exists</string>
+    <string name="err_ticket_not_found">Ticket not found</string>
+    <string name="err_bad_transition">This status change is not allowed</string>
+    <string name="err_tech_only">Only a technician can do this</string>
+    <string name="err_not_owner">Only the person who reported the ticket can do this</string>
+    <string name="err_not_assigned">This ticket is assigned to another technician</string>
+    <string name="err_already_taken">This ticket was already taken by another technician</string>
+    <string name="err_note_required">A resolution note is required</string>
+    <string name="err_cannot_comment">You cannot comment on this ticket</string>
+    <string name="err_empty_comment">Write a comment first</string>
+    <string name="err_cannot_rate">Only the owner can rate a closed ticket</string>
+    <string name="err_already_rated">This ticket was already rated</string>
+    <string name="err_pick_rating">Choose 1 to 5 stars first</string>
+    <string name="err_user_only">Only user accounts can create tickets</string>
+
+    <!-- Role choice (login / register) -->
+    <string name="login_as">Sign in as</string>
+    <string name="register_as">Create an account as</string>
+    <string name="role_hint_user">User: report problems with a device and follow your own tickets.</string>
+    <string name="role_hint_tech">Technician: handle all tickets, manage devices and QR stickers.</string>
+    <string name="hint_tech_code">Technician access code</string>
+    <string name="tech_code_help">Technicians get this code from the IT department.</string>
+    <string name="err_account_is_tech">This is a Technician account. Select Technician above.</string>
+    <string name="err_account_is_user">This is a User account. Select User above.</string>
+    <string name="err_bad_tech_code">Wrong technician access code</string>
+</resources>

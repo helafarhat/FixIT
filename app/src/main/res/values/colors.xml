@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base palette -->
+    <color name="background">#F6F3EF</color>
+    <color name="card">#FFFFFF</color>
+    <color name="border">#E3DED7</color>
+    <color name="ink">#1E2A32</color>
+    <color name="ink_secondary">#5C6670</color>
+    <color name="primary">#25577E</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_container">#DCE7F0</color>
+    <color name="primary_dark">#1B4261</color>
+    <color name="accent">#8E5459</color>
+    <color name="on_accent">#FFFFFF</color>
+    <color name="danger">#A63232</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Priority chips -->
+    <color name="priority_critical_bg">#F9DADA</color>
+    <color name="priority_critical_fg">#A63232</color>
+    <color name="priority_high_bg">#FCE2D0</color>
+    <color name="priority_high_fg">#9A4A1B</color>
+    <color name="priority_medium_bg">#F7EDC0</color>
+    <color name="priority_medium_fg">#6F5710</color>
+    <color name="priority_low_bg">#E4EAEE</color>
+    <color name="priority_low_fg">#46586A</color>
+
+    <!-- Status chips -->
+    <color name="status_open_bg">#DDE8F4</color>
+    <color name="status_open_fg">#25577E</color>
+    <color name="status_assigned_bg">#E6E3F6</color>
+    <color name="status_assigned_fg">#54479E</color>
+    <color name="status_progress_bg">#DDEFF0</color>
+    <color name="status_progress_fg">#25606B</color>
+    <color name="status_waiting_bg">#F9E4E8</color>
+    <color name="status_waiting_fg">#8E4553</color>
+    <color name="status_resolved_bg">#DDEFE3</color>
+    <color name="status_resolved_fg">#2B6342</color>
+    <color name="status_closed_bg">#E7E5E2</color>
+    <color name="status_closed_fg">#55524E</color>
+    <color name="status_cancelled_bg">#EFECE8</color>
+    <color name="status_cancelled_fg">#5C6670</color>
+
+    <!-- SLA chips -->
+    <color name="sla_ok_bg">#DDEFE3</color>
+    <color name="sla_ok_fg">#2B6342</color>
+    <color name="sla_soon_bg">#FCE4BD</color>
+    <color name="sla_soon_fg">#80500F</color>
+    <color name="sla_over_bg">#F9DADA</color>
+    <color name="sla_over_fg">#8E2F2F</color>
+    <color name="sla_paused_bg">#E7E5E2</color>
+    <color name="sla_paused_fg">#55524E</color>
+
+    <!-- Timeline steps -->
+    <color name="step_done_bg">#DCE7F0</color>
+    <color name="step_done_fg">#1B4261</color>
+</resources>

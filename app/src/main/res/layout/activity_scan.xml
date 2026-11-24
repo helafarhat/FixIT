@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/screenRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_top_bar" />
+
+    <!-- The camera preview already draws a framing rectangle and a status text. -->
+    <com.journeyapps.barcodescanner.DecoratedBarcodeView
+        android:id="@+id/barcodeView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Shown instead of the camera when the permission is missing -->
+    <LinearLayout
+        android:id="@+id/llPermission"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvPermissionMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.FixIT.Body" />
+
+        <Button
+            android:id="@+id/btnGrant"
+            style="@style/Widget.FixIT.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_m"
+            android:text="@string/action_allow_camera" />
+
+        <Button
+            android:id="@+id/btnOpenSettings"
+            style="@style/Widget.FixIT.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_m"
+            android:text="@string/action_open_settings" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/screen_padding">
+
+        <Button
+            android:id="@+id/btnFlash"
+            style="@style/Widget.FixIT.Button.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_s"
+            android:layout_weight="1"
+            android:text="@string/action_flash"
+            app:icon="@drawable/ic_flash"
+            xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+        <Button
+            android:id="@+id/btnManual"
+            style="@style/Widget.FixIT.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/action_manual_entry" />
+    </LinearLayout>
+</LinearLayout>
