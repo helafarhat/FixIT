@@ -23,8 +23,6 @@
     <string name="action_open_settings">Open app settings</string>
     <string name="action_flash">Flashlight</string>
     <string name="action_manual_entry">Enter code</string>
-    <string name="action_save_image">Save image</string>
-    <string name="action_share">Share</string>
     <string name="action_take">Take this ticket</string>
     <string name="action_start">Start working</string>
     <string name="action_ask_user">Need info from user</string>
@@ -33,7 +31,7 @@
     <string name="action_close">Confirm it is fixed (Close)</string>
     <string name="action_reopen">Still broken (Reopen)</string>
     <string name="action_cancel_ticket">Cancel ticket</string>
-
+    <string name="title_device_details">Device</string>
     <!-- Navigation and titles -->
     <string name="nav_home">Home</string>
     <string name="nav_my_tickets">My tickets</string>
@@ -54,7 +52,6 @@
     <string name="cd_back">Back</string>
     <string name="cd_priority_filter">Filter by priority</string>
     <string name="cd_sort">Sort order</string>
-    <string name="cd_qr_image">QR code of the device</string>
 
     <!-- Login / register -->
     <string name="hint_email">Email</string>
@@ -62,7 +59,7 @@
     <string name="hint_confirm_password">Confirm password</string>
     <string name="hint_name">Full name</string>
     <string name="remember_me">Remember me</string>
-    <string name="demo_accounts">Demo accounts\n\nTechnician: tech1@fixit.local / Tech1234\nTechnician: tech2@fixit.local / Tech5678\nUser: sara@fixit.local / User1234\nUser: ali@fixit.local / User1234\nUser: mona@fixit.local / User1234</string>
+    <string name="demo_accounts">Demo accounts\n\nTechnician: tech1@fixit.local / Tech1234\nUser: hela@fixit.local / User1234</string>
     <string name="role_user">User</string>
     <string name="role_tech">Technician</string>
     <string name="confirm_logout">Log out of FixIT?</string>

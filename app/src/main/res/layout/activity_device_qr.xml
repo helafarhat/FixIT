@@ -29,13 +29,6 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:padding="@dimen/space_m">
-
-                    <ImageView
-                        android:id="@+id/ivQr"
-                        android:layout_width="@dimen/qr_preview"
-                        android:layout_height="@dimen/qr_preview"
-                        android:contentDescription="@string/cd_qr_image" />
-
                     <TextView
                         android:id="@+id/tvCode"
                         android:layout_width="wrap_content"
@@ -57,29 +50,6 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_m"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnSaveImage"
-                    style="@style/Widget.FixIT.Button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/space_s"
-                    android:layout_weight="1"
-                    android:text="@string/action_save_image" />
-
-                <Button
-                    android:id="@+id/btnShare"
-                    style="@style/Widget.FixIT.Button.Outlined"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/action_share" />
-            </LinearLayout>
 
             <Button
                 android:id="@+id/btnEditDevice"

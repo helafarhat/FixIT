@@ -9,7 +9,6 @@ object QrPayload {
 
     fun isValidCode(code: String): Boolean = CODE.matches(code)
 
-    fun build(code: String): String = PREFIX + code
 
     /** Returns the device code, or null when the text is not a valid FixIT payload. */
     fun parse(text: String?): String? {

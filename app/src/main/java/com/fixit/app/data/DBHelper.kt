@@ -30,19 +30,19 @@ class DBHelper private constructor(context: Context) :
     private val appContext: Context = context.applicationContext
 
     companion object {
-        private const val DB_VERSION = 2
+        private const val DB_VERSION = 3
         @Volatile private var instance: DBHelper? = null
         fun get(ctx: Context): DBHelper =
             instance ?: synchronized(this) { instance ?: DBHelper(ctx).also { instance = it } }
 
         private const val TICKET_SQL =
             "SELECT t.*, c.name AS category_name, d.code AS device_code, d.location AS device_location, " +
-                "d.model AS device_model, u.name AS owner_name, a.name AS tech_name " +
-                "FROM tickets t " +
-                "JOIN categories c ON c.id = t.category_id " +
-                "LEFT JOIN devices d ON d.id = t.device_id " +
-                "JOIN users u ON u.id = t.created_by " +
-                "LEFT JOIN users a ON a.id = t.assigned_to"
+                    "d.model AS device_model, u.name AS owner_name, a.name AS tech_name " +
+                    "FROM tickets t " +
+                    "JOIN categories c ON c.id = t.category_id " +
+                    "LEFT JOIN devices d ON d.id = t.device_id " +
+                    "JOIN users u ON u.id = t.created_by " +
+                    "LEFT JOIN users a ON a.id = t.assigned_to"
     }
 
     // ------------------------------------------------------------------ schema
@@ -53,25 +53,25 @@ class DBHelper private constructor(context: Context) :
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL("CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, " +
-            "email TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL, salt TEXT NOT NULL, " +
-            "role TEXT NOT NULL, created_at INTEGER NOT NULL)")
+                "email TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL, salt TEXT NOT NULL, " +
+                "role TEXT NOT NULL, created_at INTEGER NOT NULL)")
         db.execSQL("CREATE TABLE categories(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE)")
         db.execSQL("CREATE TABLE devices(id INTEGER PRIMARY KEY AUTOINCREMENT, code TEXT NOT NULL UNIQUE, " +
-            "type TEXT NOT NULL, model TEXT NOT NULL, location TEXT NOT NULL, note TEXT)")
+                "type TEXT NOT NULL, model TEXT NOT NULL, location TEXT NOT NULL, note TEXT)")
         db.execSQL("CREATE TABLE tickets(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, " +
-            "description TEXT NOT NULL, category_id INTEGER NOT NULL REFERENCES categories(id), " +
-            "device_id INTEGER REFERENCES devices(id), priority TEXT NOT NULL, status TEXT NOT NULL, " +
-            "created_by INTEGER NOT NULL REFERENCES users(id), assigned_to INTEGER REFERENCES users(id), " +
-            "created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, due_at INTEGER NOT NULL, " +
-            "paused_at INTEGER, resolved_at INTEGER, closed_at INTEGER, resolution_note TEXT, " +
-            "rating INTEGER CHECK(rating BETWEEN 1 AND 5))")
+                "description TEXT NOT NULL, category_id INTEGER NOT NULL REFERENCES categories(id), " +
+                "device_id INTEGER REFERENCES devices(id), priority TEXT NOT NULL, status TEXT NOT NULL, " +
+                "created_by INTEGER NOT NULL REFERENCES users(id), assigned_to INTEGER REFERENCES users(id), " +
+                "created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, due_at INTEGER NOT NULL, " +
+                "paused_at INTEGER, resolved_at INTEGER, closed_at INTEGER, resolution_note TEXT, " +
+                "rating INTEGER CHECK(rating BETWEEN 1 AND 5))")
         db.execSQL("CREATE TABLE comments(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            "ticket_id INTEGER NOT NULL REFERENCES tickets(id) ON DELETE CASCADE, " +
-            "author_id INTEGER NOT NULL REFERENCES users(id), message TEXT NOT NULL, created_at INTEGER NOT NULL)")
+                "ticket_id INTEGER NOT NULL REFERENCES tickets(id) ON DELETE CASCADE, " +
+                "author_id INTEGER NOT NULL REFERENCES users(id), message TEXT NOT NULL, created_at INTEGER NOT NULL)")
         db.execSQL("CREATE TABLE ticket_history(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            "ticket_id INTEGER NOT NULL REFERENCES tickets(id) ON DELETE CASCADE, " +
-            "changed_by INTEGER NOT NULL REFERENCES users(id), old_status TEXT, new_status TEXT NOT NULL, " +
-            "note TEXT, changed_at INTEGER NOT NULL)")
+                "ticket_id INTEGER NOT NULL REFERENCES tickets(id) ON DELETE CASCADE, " +
+                "changed_by INTEGER NOT NULL REFERENCES users(id), old_status TEXT, new_status TEXT NOT NULL, " +
+                "note TEXT, changed_at INTEGER NOT NULL)")
         db.execSQL("CREATE INDEX idx_tickets_owner ON tickets(created_by)")
         db.execSQL("CREATE INDEX idx_tickets_tech ON tickets(assigned_to)")
         db.execSQL("CREATE INDEX idx_tickets_status ON tickets(status)")
@@ -341,7 +341,7 @@ class DBHelper private constructor(context: Context) :
         val out = ArrayList<Comment>()
         readableDatabase.rawQuery(
             "SELECT m.id, m.ticket_id, m.author_id, m.message, m.created_at, u.name, u.role " +
-                "FROM comments m JOIN users u ON u.id = m.author_id WHERE m.ticket_id = ? ORDER BY m.id",
+                    "FROM comments m JOIN users u ON u.id = m.author_id WHERE m.ticket_id = ? ORDER BY m.id",
             arrayOf(ticketId.toString())
         ).use { c ->
             while (c.moveToNext()) out.add(Comment(c.getLong(0), c.getLong(1), c.getLong(2), c.getString(5),
@@ -354,7 +354,7 @@ class DBHelper private constructor(context: Context) :
         val out = ArrayList<HistoryEntry>()
         readableDatabase.rawQuery(
             "SELECT h.id, h.ticket_id, u.name, h.old_status, h.new_status, h.note, h.changed_at " +
-                "FROM ticket_history h JOIN users u ON u.id = h.changed_by WHERE h.ticket_id = ? ORDER BY h.id",
+                    "FROM ticket_history h JOIN users u ON u.id = h.changed_by WHERE h.ticket_id = ? ORDER BY h.id",
             arrayOf(ticketId.toString())
         ).use { c ->
             while (c.moveToNext()) out.add(HistoryEntry(c.getLong(0), c.getLong(1), c.getString(2),
@@ -386,12 +386,9 @@ class DBHelper private constructor(context: Context) :
         for (n in listOf("Hardware", "Network", "Software", "Account/Access", "Printer", "Other")) {
             db.insertOrThrow("categories", null, ContentValues().apply { put("name", n) })
         }
-        // Demo accounts (see the guide): 2 technicians + 3 users.
-        val tech1 = insertUser(db, "Karim Technician", "tech1@fixit.local", "Tech1234", Role.TECH)
-        val tech2 = insertUser(db, "Leila Technician", "tech2@fixit.local", "Tech5678", Role.TECH)
-        val hela = insertUser(db, "hela", "hela@fixit.local", "User1234", Role.USER)
-        val ali = insertUser(db, "Ali Trabelsi", "ali@fixit.local", "User1234", Role.USER)
-        val mona = insertUser(db, "Mona Haddad", "mona@fixit.local", "User1234", Role.USER)
+        // Demo accounts: 1 technician + 1 user.
+        val mohamed = insertUser(db, "Mohamed", "tech1@fixit.local", "Tech1234", Role.TECH)
+        val hela = insertUser(db, "Hela", "hela@fixit.local", "User1234", Role.USER)
 
         // 14 devices in 5 rooms
         fun dev(code: String, type: DeviceType, model: String, room: String) {
@@ -414,51 +411,28 @@ class DBHelper private constructor(context: Context) :
         dev("PC-OF-001", DeviceType.PC, "HP EliteDesk 800", "Admin Office")
         dev("RTR-OF-001", DeviceType.ROUTER, "Cisco RV340", "Admin Office")
 
-        // 15 tickets, every status. Times are "minutes ago" so some are overdue / due soon.
-        // (title, desc, category, device, priority, status, owner, tech, createdAgoMin, ...)
-        seedTicket(db, now, "Computer will not boot", "Black screen after pressing the power button.",
-            "Hardware", "PC-B2-001", Priority.CRITICAL, Status.OPEN, hela, null, 20)
-        seedTicket(db, now, "Projector shows no signal", "HDMI is connected but the projector says no signal.",
-            "Hardware", "PRJ-B2-001", Priority.HIGH, Status.OPEN, ali, null, 200)          // due soon
-        seedTicket(db, now, "Wi-Fi unavailable in room C2", "Nobody can connect since this morning.",
-            "Network", "RTR-C2-001", Priority.MEDIUM, Status.OPEN, mona, null, 30 * 60)     // overdue
-        seedTicket(db, now, "Install Python on the lab PCs", "Python 3.12 and VS Code are needed for next week.",
-            "Software", null, Priority.LOW, Status.OPEN, hela, null, 10 * 60)
-        seedTicket(db, now, "Printer paper jam", "Paper is stuck and the tray will not close.",
-            "Printer", "PRN-B3-001", Priority.HIGH, Status.ASSIGNED, ali, tech1, 60)
-        seedTicket(db, now, "Teacher PC freezes", "Freezes whenever the projector is plugged in.",
-            "Hardware", "PC-C1-001", Priority.CRITICAL, Status.ASSIGNED, mona, tech2, 90)   // overdue
-        seedTicket(db, now, "PC very slow at login", "Takes ten minutes to reach the desktop.",
-            "Software", "PC-B3-001", Priority.MEDIUM, Status.IN_PROGRESS, hela, tech1, 5 * 60)
-        seedTicket(db, now, "Wi-Fi drops every hour", "The connection drops and comes back after a minute.",
-            "Network", "RTR-OF-001", Priority.HIGH, Status.IN_PROGRESS, ali, tech2, 210)    // due soon
-        val waiting1 = seedTicket(db, now, "Cannot open the shared drive", "Access denied on the Y: drive.",
-            "Account/Access", null, Priority.MEDIUM, Status.WAITING_FOR_USER, mona, tech1, 8 * 60,
-            pausedAgoMin = 120)
-        seedTicket(db, now, "Printer prints blank pages", "Every page comes out white.",
-            "Printer", "PRN-OF-001", Priority.LOW, Status.WAITING_FOR_USER, hela, tech2, 20 * 60,
-            pausedAgoMin = 5 * 60)
-        seedTicket(db, now, "Keyboard keys not working", "Several keys do nothing.",
-            "Hardware", "PC-B2-002", Priority.HIGH, Status.RESOLVED, ali, tech1, 6 * 60,
-            resolvedAgoMin = 3 * 60, note = "Replaced the keyboard with a spare one.")
-        seedTicket(db, now, "Virus warning on the PC", "Antivirus reports a threat every day.",
-            "Software", "PC-B2-003", Priority.MEDIUM, Status.RESOLVED, mona, tech2, 40 * 60,
-            resolvedAgoMin = 10 * 60, note = "Removed the malware and reinstalled the OS.")   // resolved late
-        seedTicket(db, now, "Office PC has no sound", "Speakers are silent.",
-            "Hardware", "PC-OF-001", Priority.LOW, Status.CLOSED, hela, tech1, 100 * 60,
-            resolvedAgoMin = 90 * 60, closedAgoMin = 85 * 60, note = "Sound driver reinstalled.", rating = 5)
-        seedTicket(db, now, "Projector lamp flickers", "The image flashes during lessons.",
-            "Hardware", "PRJ-C1-001", Priority.CRITICAL, Status.CLOSED, ali, tech2, 30 * 60,
-            resolvedAgoMin = 29 * 60 + 30, closedAgoMin = 28 * 60, note = "Lamp replaced.", rating = 4)
-        seedTicket(db, now, "Need a new mouse", "Created by mistake, I found one.",
-            "Hardware", null, Priority.MEDIUM, Status.CANCELLED, mona, null, 12 * 60)
-
-        // A couple of comments so the conversation area is not empty.
-        db.insertOrThrow("comments", null, ContentValues().apply {
-            put("ticket_id", waiting1); put("author_id", tech1)
-            put("message", "Which folder exactly gives the error? Please send the full path.")
-            put("created_at", now - 120 * 60_000L)
-        })
+        // 3 demo tickets. Times are "minutes ago".
+        seedTicket(
+            db = db, now = now, title = "Computer will not boot",
+            desc = "Black screen after pressing the power button.",
+            category = "Hardware", deviceCode = "PC-B2-001",
+            priority = Priority.CRITICAL, status = Status.IN_PROGRESS,
+            owner = hela, tech = mohamed, createdAgoMin = 20
+        )
+        seedTicket(
+            db = db, now = now, title = "Printer paper jam",
+            desc = "Paper is stuck and the tray will not close.",
+            category = "Printer", deviceCode = "PRN-B3-001",
+            priority = Priority.HIGH, status = Status.ASSIGNED,
+            owner = hela, tech = mohamed, createdAgoMin = 60
+        )
+        seedTicket(
+            db = db, now = now, title = "Wi-Fi unavailable in room C2",
+            desc = "Nobody can connect since this morning.",
+            category = "Network", deviceCode = "RTR-C2-001",
+            priority = Priority.MEDIUM, status = Status.OPEN,
+            owner = hela, tech = null, createdAgoMin = 30
+        )
     }
 
     private fun seedTicket(
